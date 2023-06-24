@@ -1,21 +1,23 @@
 <?php
 
-namespace Database\Factories;
+namespace Shared\Infrastructure\Laravel\Eloquent\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
-use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
+use Shared\Infrastructure\Laravel\Eloquent\Models\Admission;
 
-class PathwayFactory extends Factory
+/**
+ * @extends Factory<Admission>
+ */
+class AdmissionFactory extends Factory
 {
-    protected $model = Pathway::class;
+    protected $model = Admission::class;
 
     public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'post_bac_level' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

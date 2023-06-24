@@ -6,13 +6,13 @@ use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\PathwayResource\Pages\EditPathway;
 use Admin\Resources\PathwayResource\Pages\ListPathways;
-use Database\Factories\PathwayFactory;
 use Filament\Pages\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Illuminate\Support\Collection;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Livewire\livewire;
+use Shared\Infrastructure\Laravel\Eloquent\Factories\PathwayFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
 use Webmozart\Assert\Assert;
 

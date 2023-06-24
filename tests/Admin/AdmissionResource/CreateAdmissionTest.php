@@ -1,17 +1,20 @@
 <?php
 
-namespace Tests\Admin\PathwayResource;
+namespace Tests\Admin\AdmissionResource;
 
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
-use Admin\Resources\PathwayResource\Pages\EditPathway;
+use Admin\Resources\AdmissionResource;
+use Admin\Resources\AdmissionResource\Pages\CreateAdmission;
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\PathwayFactory;
+use Shared\Infrastructure\Laravel\Eloquent\Models\Admission;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
 use Webmozart\Assert\Assert;
 
-test('an admin can edit a pathway', function () {
+test('an admin can create an admission', function () {
     $admin = AdminFactory::new()->create();
     $pathway = PathwayFactory::new()->create();
 
@@ -20,14 +23,16 @@ test('an admin can edit a pathway', function () {
 
     actingAs($admin, 'admin');
 
-    livewire(EditPathway::class, ['record' => $pathway->getRouteKey()])
-        ->fillForm([
-            'name' => 'Test Pathway',
-            'description' => 'Test Description',
-            'post_bac_level' => 4,
-        ])
-        ->call('save')
-        ->assertHasNoFormErrors();
+    get(AdmissionResource::getUrl('create'))->assertOk();
 
-    expect($pathway->fresh()->name)->toBe('Test Pathway');
+    livewire(CreateAdmission::class)
+        ->fillForm([
+            'name' => 'Test Admission',
+            'description' => 'Test Description',
+            'pathway' => $pathway->id,
+        ])
+        ->call('create')
+        ->assertHasNoErrors();
+
+    expect(Admission::where('name', 'Test Admission')->exists())->toBeTrue();
 });

@@ -1,26 +1,26 @@
 <?php
 
-namespace Tests\Admin\PathwayResource;
+namespace Tests\Admin\AdmissionResource;
 
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
-use Admin\Resources\PathwayResource;
+use Admin\Resources\AdmissionResource;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
 use Webmozart\Assert\Assert;
 
-test('an admin can list pathways', function () {
+test('an admin can list admissions', function () {
     $admin = AdminFactory::new()->create();
 
     Assert::isInstanceOf($admin, Admin::class);
 
     actingAs($admin, 'admin');
 
-    get(PathwayResource::getUrl())->assertOk();
+    get(AdmissionResource::getUrl())->assertOk();
 
-    livewire(PathwayResource\Pages\ListPathways::class)
+    livewire(AdmissionResource\Pages\ListAdmissions::class)
         ->assertCanRenderTableColumn('name')
-        ->assertCanRenderTableColumn('post_bac_level')
-        ->assertCanRenderTableColumn('description');
+        ->assertCanRenderTableColumn('description')
+        ->assertCanRenderTableColumn('pathway.name');
 });
