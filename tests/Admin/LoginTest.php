@@ -5,18 +5,10 @@ namespace Tests\Admin;
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Filament\Http\Livewire\Auth\Login;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-use Webmozart\Assert\Assert;
 use function Pest\Laravel\assertAuthenticatedAs;
 use function Pest\Laravel\get;
-use function Pest\Laravel\withoutExceptionHandling;
 use function Pest\Livewire\livewire;
-
-uses(
-    TestCase::class,
-    RefreshDatabase::class,
-);
+use Webmozart\Assert\Assert;
 
 test('an admin can login to Laravel Filament', function () {
     $admin = AdminFactory::new()->create();
