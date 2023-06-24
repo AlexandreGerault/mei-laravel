@@ -75,6 +75,9 @@ class AdminResource extends Resource
             ]);
     }
 
+    /**
+     * @return array<string, string[]>
+     */
     public static function getPages(): array
     {
         return [
