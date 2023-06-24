@@ -15,6 +15,9 @@ class Admission extends Model
         'description',
     ];
 
+    /**
+     * @return BelongsTo<Pathway, Admission>
+     */
     public function pathway(): BelongsTo
     {
         return $this->belongsTo(Pathway::class);

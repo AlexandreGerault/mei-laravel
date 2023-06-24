@@ -29,5 +29,9 @@ test('an admin can edit a pathway', function () {
         ->call('save')
         ->assertHasNoFormErrors();
 
-    expect($pathway->fresh()->name)->toBe('Test Pathway');
+    $pathway = $pathway->fresh();
+
+    Assert::notNull($pathway);
+
+    expect($pathway->name)->toBe('Test Pathway');
 });

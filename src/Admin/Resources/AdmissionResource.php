@@ -55,6 +55,9 @@ class AdmissionResource extends Resource
             ]);
     }
 
+    /**
+     * @return array<string, string[]>
+     */
     public static function getPages(): array
     {
         return [
@@ -64,6 +67,9 @@ class AdmissionResource extends Resource
         ];
     }
 
+    /**
+     * @return string[]
+     */
     public static function getGloballySearchableAttributes(): array
     {
         return ['name'];

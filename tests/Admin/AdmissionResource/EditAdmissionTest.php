@@ -33,5 +33,9 @@ test('an admin can edit an admission', function () {
         ->call('save')
         ->assertHasNoFormErrors();
 
-    expect($admission->fresh()->name)->toBe('Test Admission');
+    $admission = $admission->fresh();
+
+    Assert::notNull($admission);
+
+    expect($admission->name)->toBe('Test Admission');
 });
