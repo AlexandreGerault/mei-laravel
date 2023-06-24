@@ -7,6 +7,7 @@ use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Storage;
 
 class Admin extends User implements FilamentUser, HasName, HasAvatar
 {
@@ -24,6 +25,11 @@ class Admin extends User implements FilamentUser, HasName, HasAvatar
         'avatar',
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function canAccessFilament(): bool
     {
         return true;
@@ -36,6 +42,9 @@ class Admin extends User implements FilamentUser, HasName, HasAvatar
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return $this->avatar;
+        return Storage::disk('s3')->temporaryUrl(
+            $this->avatar,
+            now()->addMinutes(5),
+        );
     }
 }

@@ -9,6 +9,6 @@ class FakeDataSeeder extends Seeder
 {
     public function run(): void
     {
-        AdminFactory::new()->create(['email' => 'admin@admin']);
+        AdminFactory::new()->create(['email' => 'admin@localhost']);
     }
 }

@@ -42,10 +42,10 @@ class AdminResource extends Resource
                 ->placeholder('********'),
             FileUpload::make('avatar')
                 ->disk('s3')
-                ->visibility('public')
+                ->visibility('private')
                 ->directory('admin-avatars')
                 ->label(__('avatar'))
-                ->image()
+                ->image(),
         ]);
     }
 
@@ -63,7 +63,7 @@ class AdminResource extends Resource
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('avatar')
                     ->label('Avatar')
-                    ->visibility('public')
+                    ->visibility('private')
                     ->disk('s3'),
             ])
             ->filters([])
