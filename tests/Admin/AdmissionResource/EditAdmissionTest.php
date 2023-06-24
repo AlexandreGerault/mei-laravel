@@ -10,14 +10,17 @@ use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\AdmissionFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\PathwayFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Admission;
+use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
 use Webmozart\Assert\Assert;
 
 test('an admin can edit an admission', function () {
     $admin = AdminFactory::new()->create();
     $admission = AdmissionFactory::new()->create();
+    $pathway = PathwayFactory::new()->create();
 
     Assert::isInstanceOf($admin, Admin::class);
     Assert::isInstanceOf($admission, Admission::class);
+    Assert::isInstanceOf($pathway, Pathway::class);
 
     actingAs($admin, 'admin');
 
@@ -25,7 +28,7 @@ test('an admin can edit an admission', function () {
         ->fillForm([
             'name' => 'Test Admission',
             'description' => 'Test Description',
-            'pathway' => PathwayFactory::new()->create()->id,
+            'pathway' => $pathway->id,
         ])
         ->call('save')
         ->assertHasNoFormErrors();
