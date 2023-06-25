@@ -15,7 +15,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.0",
-        "owenvoke/blade-fontawesome": "^2.3"
+        "owenvoke/blade-fontawesome": "^2.3",
+        "symfony/messenger": "^6.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
