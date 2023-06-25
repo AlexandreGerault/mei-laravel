@@ -16,9 +16,9 @@ class PathwayFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'post_bac_level' => $this->faker->randomNumber(),
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'post_bac_level' => fake()->randomNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

@@ -16,8 +16,8 @@ class AdmissionFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
+            'name' => fake()->name(),
+            'description' => fake()->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

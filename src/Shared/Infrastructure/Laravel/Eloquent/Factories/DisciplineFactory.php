@@ -16,9 +16,9 @@ class DisciplineFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'color' => $this->faker->word(),
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'color' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
