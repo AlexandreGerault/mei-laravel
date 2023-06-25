@@ -18,6 +18,8 @@ class SpecialismFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
+            'discipline_id' => DisciplineFactory::new(),
+            'school_id' => SchoolFactory::new(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

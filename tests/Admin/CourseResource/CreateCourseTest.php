@@ -7,11 +7,13 @@ use Admin\Resources\CourseResource\Pages\CreateCourse;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
+use Shared\Infrastructure\Laravel\Eloquent\Factories\SpecialismFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Course;
 use Webmozart\Assert\Assert;
 
 test('an admin can create a course', function () {
     $admin = AdminFactory::new()->create();
+    $specialisms = SpecialismFactory::new()->count(10)->create();
 
     Assert::isInstanceOf($admin, Admin::class);
 
@@ -23,9 +25,15 @@ test('an admin can create a course', function () {
         ->fillForm([
             'name' => 'Test Course',
             'description' => 'Test Short Description',
+            'specialisms' => $specialisms->pluck('id')->toArray(),
         ])
         ->call('create')
         ->assertHasNoErrors();
 
-    expect(Course::where('name', 'Test Course')->exists())->toBeTrue();
+    $course = Course::where('name', 'Test Course')->first();
+
+    Assert::notNull($course);
+
+    expect($course)->toBeInstanceOf(Course::class)
+        ->and($course->specialisms->count())->toBe(10);
 });

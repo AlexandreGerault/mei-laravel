@@ -5,6 +5,7 @@ namespace Admin\Resources;
 use Admin\Resources\SpecialismResource\Pages\CreateSpecialism;
 use Admin\Resources\SpecialismResource\Pages\EditSpecialism;
 use Admin\Resources\SpecialismResource\Pages\ListSpecialisms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -30,6 +31,24 @@ class SpecialismResource extends Resource
                     ->required(),
 
                 TextInput::make('description'),
+
+                Select::make('discipline')
+                    ->relationship('discipline', 'name')
+                    ->preload(),
+
+                Select::make('school')
+                    ->relationship('school', 'name')
+                    ->preload(),
+
+                Select::make('courses')
+                    ->relationship('courses', 'name')
+                    ->preload()
+                    ->multiple(),
+
+                Select::make('industries')
+                    ->relationship('industries', 'name')
+                    ->preload()
+                    ->multiple(),
             ]);
     }
 

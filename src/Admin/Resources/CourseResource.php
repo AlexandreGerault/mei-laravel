@@ -2,7 +2,10 @@
 
 namespace Admin\Resources;
 
-use Filament\Forms\Components\Placeholder;
+use Admin\Resources\CourseResource\Pages\CreateCourse;
+use Admin\Resources\CourseResource\Pages\EditCourse;
+use Admin\Resources\CourseResource\Pages\ListCourses;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -29,13 +32,10 @@ class CourseResource extends Resource
 
                 TextInput::make('description'),
 
-                Placeholder::make('created_at')
-                    ->label('Created Date')
-                    ->content(fn (?Course $record): string => $record?->created_at?->diffForHumans() ?? '-'),
-
-                Placeholder::make('updated_at')
-                    ->label('Last Modified Date')
-                    ->content(fn (?Course $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                Select::make('specialisms')
+                    ->relationship('specialisms', 'name')
+                    ->preload()
+                    ->multiple(),
             ]);
     }
 
@@ -57,9 +57,9 @@ class CourseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Admin\Resources\CourseResource\Pages\ListCourses::route('/'),
-            'create' => \Admin\Resources\CourseResource\Pages\CreateCourse::route('/create'),
-            'edit' => \Admin\Resources\CourseResource\Pages\EditCourse::route('/{record}/edit'),
+            'index' => ListCourses::route('/'),
+            'create' => CreateCourse::route('/create'),
+            'edit' => EditCourse::route('/{record}/edit'),
         ];
     }
 
