@@ -22,6 +22,8 @@ class DisciplineResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?string $navigationIcon = 'fas-book';
+
     public static function form(Form $form): Form
     {
         return $form

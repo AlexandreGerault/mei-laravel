@@ -21,6 +21,8 @@ class AdmissionResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?string $navigationIcon = 'fas-trophy';
+
     public static function form(Form $form): Form
     {
         return $form

@@ -20,6 +20,8 @@ class PathwayResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?string $navigationIcon = 'fas-chalkboard-user';
+
     public static function form(Form $form): Form
     {
         return $form
