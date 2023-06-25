@@ -11,7 +11,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function setUp(): void
     {
-        Storage::fake('s3');
         parent::setUp();
+        Storage::fake('s3');
     }
 }
