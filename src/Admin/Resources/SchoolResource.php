@@ -2,12 +2,18 @@
 
 namespace Admin\Resources;
 
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\Placeholder;
+use Admin\Resources\SchoolResource\Pages\CreateSchool;
+use Admin\Resources\SchoolResource\Pages\EditSchool;
+use Admin\Resources\SchoolResource\Pages\ListSchools;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 use Shared\Infrastructure\Laravel\Eloquent\Models\School;
@@ -36,16 +42,19 @@ class SchoolResource extends Resource
                     ->required()
                     ->unique(School::class, 'slug', fn ($record) => $record),
 
-                TextInput::make('logo')
+                FileUpload::make('logo')
+                    ->visibility('private')
+                    ->disk('s3')
                     ->required(),
 
-                TextInput::make('long_description')
+                RichEditor::make('long_description')
                     ->required(),
 
                 TextInput::make('short_description')
                     ->required(),
 
                 TextInput::make('website')
+                    ->url()
                     ->required(),
 
                 TextInput::make('city')
@@ -60,19 +69,11 @@ class SchoolResource extends Resource
                 TextInput::make('department')
                     ->required(),
 
-                Checkbox::make('is_public'),
+                Toggle::make('is_public'),
 
                 TextInput::make('foundation_year')
                     ->required()
                     ->integer(),
-
-                Placeholder::make('created_at')
-                    ->label('Created Date')
-                    ->content(fn (?School $record): string => $record?->created_at?->diffForHumans() ?? '-'),
-
-                Placeholder::make('updated_at')
-                    ->label('Last Modified Date')
-                    ->content(fn (?School $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
             ]);
     }
 
@@ -84,13 +85,9 @@ class SchoolResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('slug')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('logo'),
-
-                TextColumn::make('long_description'),
+                ImageColumn::make('logo')
+                    ->visibility('private')
+                    ->disk('s3'),
 
                 TextColumn::make('short_description'),
 
@@ -98,27 +95,29 @@ class SchoolResource extends Resource
 
                 TextColumn::make('city'),
 
-                TextColumn::make('address'),
-
                 TextColumn::make('region'),
 
-                TextColumn::make('department'),
-
-                TextColumn::make('is_public'),
+                IconColumn::make('is_public')->boolean(),
 
                 TextColumn::make('foundation_year'),
             ]);
     }
 
+    /**
+     * @return array<string, string[]>
+     */
     public static function getPages(): array
     {
         return [
-            'index' => \Admin\Resources\SchoolResource\Pages\ListSchools::route('/'),
-            'create' => \Admin\Resources\SchoolResource\Pages\CreateSchool::route('/create'),
-            'edit' => \Admin\Resources\SchoolResource\Pages\EditSchool::route('/{record}/edit'),
+            'index' => ListSchools::route('/'),
+            'create' => CreateSchool::route('/create'),
+            'edit' => EditSchool::route('/{record}/edit'),
         ];
     }
 
+    /**
+     * @return string[]
+     */
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'slug'];
