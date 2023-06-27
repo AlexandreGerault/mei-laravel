@@ -8,7 +8,6 @@ use Filament\Models\Contracts\HasName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Storage;
-use Webmozart\Assert\Assert;
 
 class Admin extends User implements FilamentUser, HasName, HasAvatar
 {
@@ -43,7 +42,9 @@ class Admin extends User implements FilamentUser, HasName, HasAvatar
 
     public function getFilamentAvatarUrl(): ?string
     {
-        Assert::notNull($this->avatar);
+        if ($this->avatar === null) {
+            return null;
+        }
 
         return Storage::disk('s3')->temporaryUrl(
             $this->avatar,

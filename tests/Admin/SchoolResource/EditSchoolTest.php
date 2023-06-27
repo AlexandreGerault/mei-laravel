@@ -5,10 +5,14 @@ namespace Tests\Admin\PathwayResource;
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\SchoolResource\Pages\EditSchool;
+use Admin\Resources\SchoolResource\RelationManagers\CourseRelationManager;
+use Admin\Resources\SchoolResource\RelationManagers\SpecialismRelationManager;
 use Illuminate\Http\Testing\File;
 use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
+use Shared\Infrastructure\Laravel\Eloquent\Factories\CourseFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\SchoolFactory;
+use Shared\Infrastructure\Laravel\Eloquent\Factories\SpecialismFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\School;
 use Webmozart\Assert\Assert;
 
@@ -43,4 +47,21 @@ test('an admin can edit a school', function () {
     Assert::notNull($school);
 
     expect($school->name)->toBe('Test School');
+});
+
+test('the school edit page list associated specialisms', function () {
+    $admin = AdminFactory::new()->create();
+    $school = SchoolFactory::new()
+        ->has(SpecialismFactory::new()->count(10), 'specialisms')
+        ->create();
+
+    Assert::isInstanceOf($admin, Admin::class);
+    Assert::isInstanceOf($school, School::class);
+
+    actingAs($admin, 'admin');
+
+    livewire(SpecialismRelationManager::class, ['ownerRecord' => $school])
+        ->assertSuccessful()
+        ->assertCanSeeTableRecords($school->specialisms)
+        ->assertCanRenderTableColumn('name');
 });

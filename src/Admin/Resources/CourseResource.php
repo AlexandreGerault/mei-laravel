@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Course;
+use Webmozart\Assert\Assert;
 
 class CourseResource extends Resource
 {
@@ -22,6 +23,29 @@ class CourseResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $navigationIcon = 'fas-briefcase';
+
+    public static function getModelLabel(): string
+    {
+        $label = __('course');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        $label = __('courses');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('schools');
+    }
 
     public static function form(Form $form): Form
     {

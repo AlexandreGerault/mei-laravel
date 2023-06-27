@@ -13,6 +13,7 @@ use Filament\Resources\Table;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\TextColumn;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Discipline;
+use Webmozart\Assert\Assert;
 
 class DisciplineResource extends Resource
 {
@@ -23,6 +24,29 @@ class DisciplineResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $navigationIcon = 'fas-book';
+
+    public static function getModelLabel(): string
+    {
+        $label = __('discipline');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        $label = __('disciplines');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
+    }
 
     public static function form(Form $form): Form
     {

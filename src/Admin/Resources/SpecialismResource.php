@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Specialism;
+use Webmozart\Assert\Assert;
 
 class SpecialismResource extends Resource
 {
@@ -23,29 +24,58 @@ class SpecialismResource extends Resource
 
     protected static ?string $navigationIcon = 'fas-tags';
 
+    public static function getModelLabel(): string
+    {
+        $label = __('specialism');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        $label = __('specialisms');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('schools');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label(__('name'))
                     ->required(),
 
-                TextInput::make('description'),
+                TextInput::make('description')
+                    ->label(__('description')),
 
                 Select::make('discipline')
+                    ->label(__('discipline'))
                     ->relationship('discipline', 'name')
                     ->preload(),
 
                 Select::make('school')
+                    ->label(__('school'))
                     ->relationship('school', 'name')
                     ->preload(),
 
                 Select::make('courses')
+                    ->label(__('courses'))
                     ->relationship('courses', 'name')
                     ->preload()
                     ->multiple(),
 
                 Select::make('industries')
+                    ->label(__('industries'))
                     ->relationship('industries', 'name')
                     ->preload()
                     ->multiple(),

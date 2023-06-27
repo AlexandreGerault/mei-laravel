@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Admission;
+use Webmozart\Assert\Assert;
 
 class AdmissionResource extends Resource
 {
@@ -23,17 +24,43 @@ class AdmissionResource extends Resource
 
     protected static ?string $navigationIcon = 'fas-trophy';
 
+    public static function getModelLabel(): string
+    {
+        $label = __('admission');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        $label = __('admissions');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label(__('name'))
                     ->required(),
 
                 TextInput::make('description')
+                    ->label(__('description'))
                     ->required(),
 
                 Select::make('pathway')
+                    ->label(__('pathway'))
                     ->relationship('pathway', 'name')
                     ->required(),
             ]);

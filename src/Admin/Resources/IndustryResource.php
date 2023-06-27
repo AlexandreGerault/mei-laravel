@@ -12,6 +12,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Industry;
+use Webmozart\Assert\Assert;
 
 class IndustryResource extends Resource
 {
@@ -19,12 +20,37 @@ class IndustryResource extends Resource
 
     protected static ?string $navigationIcon = 'fas-person-digging';
 
+    public static function getModelLabel(): string
+    {
+        $label = __('industry');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        $label = __('industries');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([
             TextInput::make('name')
+                ->label(__('name'))
                 ->required(),
-            TextInput::make('description'),
+            TextInput::make('description')
+                ->label(__('description')),
         ]);
     }
 

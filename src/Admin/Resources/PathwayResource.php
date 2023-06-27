@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
+use Webmozart\Assert\Assert;
 
 class PathwayResource extends Resource
 {
@@ -22,17 +23,43 @@ class PathwayResource extends Resource
 
     protected static ?string $navigationIcon = 'fas-chalkboard-user';
 
+    public static function getModelLabel(): string
+    {
+        $label = __('pathway');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        $label = __('pathways');
+
+        Assert::string($label);
+
+        return $label;
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label(__('name'))
                     ->required(),
 
                 TextInput::make('description')
+                    ->label(__('description'))
                     ->required(),
 
                 TextInput::make('post_bac_level')
+                    ->label(__('post_bac_level'))
                     ->required()
                     ->integer(),
             ]);
