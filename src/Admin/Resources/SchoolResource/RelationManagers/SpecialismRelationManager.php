@@ -43,7 +43,10 @@ class SpecialismRelationManager extends RelationManager
     public static function table(Table $table): Table
     {
         return $table->columns([
-            TextColumn::make('name'),
+            TextColumn::make('name')
+                ->label(__('name')),
+            TextColumn::make('description')
+                ->label(__('description'))
         ])
             ->headerActions([
                 CreateAction::make(),

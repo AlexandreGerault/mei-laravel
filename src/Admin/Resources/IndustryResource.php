@@ -38,11 +38,6 @@ class IndustryResource extends Resource
         return $label;
     }
 
-    protected static function getNavigationGroup(): ?string
-    {
-        return __('data');
-    }
-
     public static function form(Form $form): Form
     {
         return $form->schema([
@@ -59,9 +54,11 @@ class IndustryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('name'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('description'),
+                TextColumn::make('description')
+                    ->label(__('description')),
             ])
             ->filters([])
             ->actions([
@@ -82,5 +79,10 @@ class IndustryResource extends Resource
             'create' => CreateIndustry::route('/create'),
             'edit' => Pages\EditAdmin::route('/{record}/edit'),
         ];
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
     }
 }

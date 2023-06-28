@@ -71,14 +71,17 @@ class AdmissionResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('name'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('description')
+                    ->label(__('description'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('pathway.name')
+                    ->label(__('pathway'))
                     ->searchable()
                     ->sortable(),
             ]);

@@ -43,21 +43,19 @@ class DisciplineResource extends Resource
         return $label;
     }
 
-    protected static function getNavigationGroup(): ?string
-    {
-        return __('data');
-    }
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label(__('name'))
                     ->required(),
 
-                TextInput::make('description'),
+                TextInput::make('description')
+                    ->label(__('description')),
 
                 ColorPicker::make('color')
+                    ->label(__('color'))
                     ->required(),
             ]);
     }
@@ -94,5 +92,10 @@ class DisciplineResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['name'];
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
     }
 }

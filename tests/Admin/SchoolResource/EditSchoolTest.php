@@ -65,3 +65,25 @@ test('the school edit page list associated specialisms', function () {
         ->assertCanSeeTableRecords($school->specialisms)
         ->assertCanRenderTableColumn('name');
 });
+
+test('the school edit page list associated courses', function () {
+    $admin = AdminFactory::new()->create();
+    $school = SchoolFactory::new()
+        ->has(
+            factory: SpecialismFactory::new()
+                ->has(CourseFactory::new()->count(10), 'courses')
+                ->count(1),
+            relationship: 'specialisms'
+        )
+        ->create();
+
+    Assert::isInstanceOf($admin, Admin::class);
+    Assert::isInstanceOf($school, School::class);
+
+    actingAs($admin, 'admin');
+
+    livewire(CourseRelationManager::class, ['ownerRecord' => $school])
+        ->assertSuccessful()
+        ->assertCanSeeTableRecords($school->courses)
+        ->assertCanRenderTableColumn('name');
+});

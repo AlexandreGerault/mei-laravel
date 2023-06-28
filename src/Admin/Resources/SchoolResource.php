@@ -5,6 +5,7 @@ namespace Admin\Resources;
 use Admin\Resources\SchoolResource\Pages\CreateSchool;
 use Admin\Resources\SchoolResource\Pages\EditSchool;
 use Admin\Resources\SchoolResource\Pages\ListSchools;
+use Admin\Resources\SchoolResource\RelationManagers\CourseRelationManager;
 use Admin\Resources\SchoolResource\RelationManagers\SpecialismRelationManager;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -147,6 +148,7 @@ class SchoolResource extends Resource
     {
         return [
             SpecialismRelationManager::class,
+            CourseRelationManager::class,
         ];
     }
 

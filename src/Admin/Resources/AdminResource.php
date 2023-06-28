@@ -41,10 +41,10 @@ class AdminResource extends Resource
                 ->required(fn (string $context): bool => $context === 'create')
                 ->placeholder('********'),
             FileUpload::make('avatar')
+                ->label(__('avatar'))
                 ->disk('s3')
                 ->visibility('private')
                 ->directory('admin-avatars')
-                ->label(__('avatar'))
                 ->image(),
         ]);
     }

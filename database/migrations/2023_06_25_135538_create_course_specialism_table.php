@@ -13,8 +13,8 @@ return new class extends Migration
         Schema::create('course_specialism', static function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(Course::class);
-            $table->foreignIdFor(Specialism::class);
+            $table->foreignIdFor(Course::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Specialism::class)->nullable()->constrained()->nullOnDelete();
 
             $table->timestamps();
         });

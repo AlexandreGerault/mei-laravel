@@ -41,11 +41,6 @@ class PathwayResource extends Resource
         return $label;
     }
 
-    protected static function getNavigationGroup(): ?string
-    {
-        return __('data');
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -70,12 +65,15 @@ class PathwayResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('name'))
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('description'),
+                TextColumn::make('description')
+                    ->label(__('description')),
 
-                TextColumn::make('post_bac_level'),
+                TextColumn::make('post_bac_level')
+                    ->label(__('post_bac_level')),
             ]);
     }
 
@@ -97,5 +95,10 @@ class PathwayResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['name'];
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('data');
     }
 }

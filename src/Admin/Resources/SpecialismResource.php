@@ -87,10 +87,12 @@ class SpecialismResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('name'))
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('description'),
+                TextColumn::make('description')
+                    ->label(__('description')),
             ]);
     }
 

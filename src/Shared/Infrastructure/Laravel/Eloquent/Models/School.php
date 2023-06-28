@@ -4,8 +4,8 @@ namespace Shared\Infrastructure\Laravel\Eloquent\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class School extends Model
 {
@@ -29,5 +29,10 @@ class School extends Model
     public function specialisms(): HasMany
     {
         return $this->hasMany(Specialism::class, 'school_id');
+    }
+
+    public function courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, 'course_school_view');
     }
 }

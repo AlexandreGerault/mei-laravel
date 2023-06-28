@@ -42,21 +42,19 @@ class CourseResource extends Resource
         return $label;
     }
 
-    protected static function getNavigationGroup(): ?string
-    {
-        return __('schools');
-    }
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label(__('name'))
                     ->required(),
 
-                TextInput::make('description'),
+                TextInput::make('description')
+                    ->label(__('description')),
 
                 Select::make('specialisms')
+                    ->label(__('specialisms'))
                     ->relationship('specialisms', 'name')
                     ->preload()
                     ->multiple(),
@@ -68,10 +66,12 @@ class CourseResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('name'))
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('description'),
+                TextColumn::make('description')
+                    ->label(__('description')),
             ]);
     }
 
@@ -93,5 +93,10 @@ class CourseResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['name'];
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('schools');
     }
 }

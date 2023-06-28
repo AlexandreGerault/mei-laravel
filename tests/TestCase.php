@@ -9,6 +9,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    protected bool $dropViews = true;
+
     protected function setUp(): void
     {
         parent::setUp();
