@@ -26,11 +26,17 @@ class School extends Model
         'foundation_year',
     ];
 
+    /**
+     * @return HasMany<Specialism>
+     */
     public function specialisms(): HasMany
     {
         return $this->hasMany(Specialism::class, 'school_id');
     }
 
+    /**
+     * @return BelongsToMany<Course>
+     */
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'course_school_view');
