@@ -16,6 +16,10 @@ use Webmozart\Assert\Assert;
 
 class CourseResource extends Resource
 {
+    use CountNavigationLabel;
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $model = Course::class;
 
     protected static ?string $slug = 'courses';

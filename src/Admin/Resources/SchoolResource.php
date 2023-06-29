@@ -23,6 +23,8 @@ use Webmozart\Assert\Assert;
 
 class SchoolResource extends Resource
 {
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $model = School::class;
 
     protected static ?string $slug = 'schools';

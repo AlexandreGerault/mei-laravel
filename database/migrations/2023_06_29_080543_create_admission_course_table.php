@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Admission;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Course;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('admission_course', function (Blueprint $table) {

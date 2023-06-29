@@ -16,6 +16,10 @@ use Webmozart\Assert\Assert;
 
 class SpecialismResource extends Resource
 {
+    use CountNavigationLabel;
+
+    protected static ?int $navigationSort = 3;
+
     protected static ?string $model = Specialism::class;
 
     protected static ?string $slug = 'specialisms';

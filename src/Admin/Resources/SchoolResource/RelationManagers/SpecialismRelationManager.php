@@ -2,7 +2,6 @@
 
 namespace Admin\Resources\SchoolResource\RelationManagers;
 
-use Admin\Resources\SpecialismResource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -73,7 +72,7 @@ class SpecialismRelationManager extends RelationManager
             TextColumn::make('name')
                 ->label(__('name')),
             TextColumn::make('description')
-                ->label(__('description'))
+                ->label(__('description')),
         ])
             ->headerActions([
                 CreateAction::make(),
