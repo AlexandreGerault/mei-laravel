@@ -66,6 +66,7 @@ class CourseRelationManager extends RelationManager
                 Select::make('specialisms')
                     ->label(__('specialisms'))
                     ->relationship('specialisms', 'name')
+
                     ->preload()
                     ->multiple(),
             ]);

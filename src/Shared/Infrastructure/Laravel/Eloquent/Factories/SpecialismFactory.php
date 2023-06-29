@@ -16,8 +16,8 @@ class SpecialismFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
+            'name' => fake()->unique()->name(),
+            'description' => fake()->text(),
             'discipline_id' => DisciplineFactory::new(),
             'school_id' => SchoolFactory::new(),
             'created_at' => Carbon::now(),

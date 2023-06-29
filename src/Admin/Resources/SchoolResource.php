@@ -71,6 +71,7 @@ class SchoolResource extends Resource
                     ->unique(School::class, 'slug', fn ($record) => $record),
 
                 FileUpload::make('logo')
+                    ->image()
                     ->label(__('logo'))
                     ->visibility('private')
                     ->disk('s3')

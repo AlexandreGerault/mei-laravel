@@ -17,7 +17,7 @@ return new class extends Migration
     private function createView(): string
     {
         return <<<'SQL'
-CREATE VIEW course_school_view AS
+CREATE OR REPLACE VIEW course_school_view AS
 SELECT courses.id as course_id, schools.id as school_id FROM courses
 INNER JOIN course_specialism ON courses.id = course_specialism.course_id
 INNER JOIN specialisms ON course_specialism.specialism_id = specialisms.id

@@ -16,6 +16,14 @@ class Course extends Model
     ];
 
     /**
+     * @return BelongsToMany<Admission>
+     */
+    public function admissions(): BelongsToMany
+    {
+        return $this->belongsToMany(Admission::class);
+    }
+
+    /**
      * @return BelongsToMany<Specialism>
      */
     public function specialisms(): BelongsToMany

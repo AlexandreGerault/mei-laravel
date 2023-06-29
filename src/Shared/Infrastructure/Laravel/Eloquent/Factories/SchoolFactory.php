@@ -14,18 +14,18 @@ class SchoolFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->unique()->name(),
             'slug' => fake()->slug(),
             'logo' => fake()->word(),
             'long_description' => fake()->text(),
             'short_description' => fake()->text(),
-            'website' => fake()->word(),
+            'website' => fake()->url(),
             'city' => fake()->city(),
             'address' => fake()->address(),
             'region' => fake()->word(),
             'department' => fake()->word(),
             'is_public' => fake()->boolean(),
-            'foundation_year' => fake()->randomNumber(),
+            'foundation_year' => fake()->numberBetween(1900, 2023),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

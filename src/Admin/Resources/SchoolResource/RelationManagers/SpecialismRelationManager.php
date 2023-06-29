@@ -3,6 +3,8 @@
 namespace Admin\Resources\SchoolResource\RelationManagers;
 
 use Admin\Resources\SpecialismResource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
@@ -37,7 +39,32 @@ class SpecialismRelationManager extends RelationManager
 
     public static function form(Form $form): Form
     {
-        return SpecialismResource::form($form);
+        return $form
+            ->schema([
+                TextInput::make('name')
+                    ->label(__('name'))
+                    ->required(),
+
+                TextInput::make('description')
+                    ->label(__('description')),
+
+                Select::make('discipline')
+                    ->label(__('discipline'))
+                    ->relationship('discipline', 'name')
+                    ->preload(),
+
+                Select::make('courses')
+                    ->label(__('courses'))
+                    ->relationship('courses', 'name')
+                    ->preload()
+                    ->multiple(),
+
+                Select::make('industries')
+                    ->label(__('industries'))
+                    ->relationship('industries', 'name')
+                    ->preload()
+                    ->multiple(),
+            ]);
     }
 
     public static function table(Table $table): Table
