@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('disciplines', static function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id', 16)->charset('binary')->primary();
             $table->string('name')->unique()->index();
             $table->string('description')->nullable();
             $table->string('color');

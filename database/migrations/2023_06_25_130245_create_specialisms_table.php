@@ -11,9 +11,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('specialisms', static function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Discipline::class)->nullable();
-            $table->foreignIdFor(School::class)->nullable();
+            $table->ulid('id', 16)->charset('binary')->primary();
+            $table->foreignIdFor(Discipline::class)->charset('binary')->nullable();
+            $table->foreignIdFor(School::class)->charset('binary')->nullable();
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();

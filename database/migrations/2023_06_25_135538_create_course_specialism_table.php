@@ -11,10 +11,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('course_specialism', static function (Blueprint $table) {
-            $table->id();
+            //            $table->ulid('id', 16)->charset('binary')->primary();
 
-            $table->foreignIdFor(Course::class)->nullable()->constrained()->nullOnDelete();
-            $table->foreignIdFor(Specialism::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Course::class)->charset('binary')->nullable();
+            $table->foreignIdFor(Specialism::class)->charset('binary')->nullable();
 
             $table->timestamps();
         });

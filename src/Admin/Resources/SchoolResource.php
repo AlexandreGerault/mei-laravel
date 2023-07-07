@@ -111,8 +111,8 @@ class SchoolResource extends Resource
                 Toggle::make('is_public')
                     ->label(__('is_public')),
 
-                TextInput::make('foundation_year')
-                    ->label(__('foundation_year'))
+                TextInput::make('foundation_date')
+                    ->label(__('foundation_date'))
                     ->required()
                     ->integer(),
             ]);
@@ -140,7 +140,7 @@ class SchoolResource extends Resource
 
                 IconColumn::make('is_public')->boolean(),
 
-                TextColumn::make('foundation_year'),
+                TextColumn::make('foundation_date'),
             ]);
     }
 

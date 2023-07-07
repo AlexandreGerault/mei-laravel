@@ -15,6 +15,12 @@ return [
     |
     */
 
+    'dbal' => [
+        'types' => [
+            'char' => \Doctrine\DBAL\Types\IntegerType::class,
+        ],
+    ],
+
     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*

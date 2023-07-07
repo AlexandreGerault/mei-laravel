@@ -25,7 +25,7 @@ class SchoolFactory extends Factory
             'region' => fake()->word(),
             'department' => fake()->word(),
             'is_public' => fake()->boolean(),
-            'foundation_year' => fake()->numberBetween(1900, 2023),
+            'foundation_date' => fake()->numberBetween(1900, 2023),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

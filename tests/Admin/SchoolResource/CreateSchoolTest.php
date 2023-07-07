@@ -34,7 +34,7 @@ test('an admin can create a school', function () {
             'region' => 'Test Region',
             'department' => 'Test Department',
             'is_public' => true,
-            'foundation_year' => 2021,
+            'foundation_date' => 2021,
         ])
         ->call('create')
         ->assertHasNoErrors();
