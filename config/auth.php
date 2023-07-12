@@ -69,7 +69,7 @@ return [
             'model' => \Shared\Infrastructure\Laravel\Eloquent\Models\User::class,
         ],
         'admins' => [
-            'driver' => 'eloquent',
+            'driver' => 'admin-provider',
             'model' => \Admin\Infrastructure\Models\Admin::class,
         ],
 
