@@ -4,6 +4,7 @@ namespace Shared\Infrastructure\Laravel\Eloquent\Traits;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
+use Symfony\Component\Uid\Ulid;
 
 trait HasUlids
 {
@@ -49,15 +50,17 @@ trait HasUlids
      */
     public function resolveRouteBindingQuery($query, $value, $field = null)
     {
-        if ($field && in_array($field, $this->uniqueIds()) && ! Str::isUlid($value)) {
-            throw (new ModelNotFoundException)->setModel(get_class($this), $value);
-        }
+        $binaryId = Ulid::fromString($value)->toBinary();
 
-        if (! $field && in_array($this->getRouteKeyName(), $this->uniqueIds()) && ! Str::isUlid($value)) {
-            throw (new ModelNotFoundException)->setModel(get_class($this), $value);
-        }
+        //        if ($field && in_array($field, $this->uniqueIds())) {
+        //            throw (new ModelNotFoundException)->setModel(get_class($this), $binaryId);
+        //        }
+        //
+        //        if (! $field && in_array($this->getRouteKeyName(), $this->uniqueIds())) {
+        //            throw (new ModelNotFoundException)->setModel(get_class($this), $binaryId);
+        //        }
 
-        return parent::resolveRouteBindingQuery($query, $value, $field);
+        return $query->where($field ?? $this->getRouteKeyName(), $binaryId)->first();
     }
 
     /**
@@ -68,7 +71,7 @@ trait HasUlids
     public function getKeyType()
     {
         if (in_array($this->getKeyName(), $this->uniqueIds())) {
-            return 'string';
+            return 'binary';
         }
 
         return $this->keyType;

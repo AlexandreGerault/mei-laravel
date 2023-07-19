@@ -15,7 +15,15 @@ class Admin extends User implements FilamentUser, HasName, HasAvatar
 {
     use HasFactory, HasUlids;
 
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
     protected $keyType = 'string';
+
+    protected $casts = [
+        'id' => UlidCast::class,
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -32,10 +40,6 @@ class Admin extends User implements FilamentUser, HasName, HasAvatar
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    protected $casts = [
-        'id' => UlidCast::class,
     ];
 
     public function canAccessFilament(): bool
