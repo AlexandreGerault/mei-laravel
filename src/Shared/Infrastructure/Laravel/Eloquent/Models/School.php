@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Shared\Infrastructure\Laravel\Eloquent\Casts\UlidCast;
+use Shared\Infrastructure\Laravel\Eloquent\Traits\HasUlids;
 
 class School extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
 
     protected $fillable = [
         'name',
@@ -23,7 +25,11 @@ class School extends Model
         'region',
         'department',
         'is_public',
-        'foundation_year',
+        'foundation_date',
+    ];
+
+    protected $casts = [
+        'id' => UlidCast::class,
     ];
 
     /**

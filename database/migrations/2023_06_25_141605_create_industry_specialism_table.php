@@ -11,9 +11,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('industry_specialism', static function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Industry::class)->nullable();
-            $table->foreignIdFor(Specialism::class)->nullable();
+            //            $table->ulid('id', 16)->charset('binary')->primary();
+            $table->foreignIdFor(Industry::class)->charset('binary')->nullable();
+            $table->foreignIdFor(Specialism::class)->charset('binary')->nullable();
             $table->timestamps();
         });
     }

@@ -11,15 +11,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admission_course', function (Blueprint $table) {
-            $table->id();
+            //            $table->ulid('id', 16)->charset('binary')->primary();
 
             $table->foreignIdFor(Admission::class)
-                ->constrained()
-                ->cascadeOnDelete();
+                ->charset('binary');
 
             $table->foreignIdFor(Course::class)
-                ->constrained()
-                ->cascadeOnDelete();
+                ->charset('binary');
 
             $table->timestamps();
         });

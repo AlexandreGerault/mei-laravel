@@ -3,7 +3,9 @@
 namespace Shared\Infrastructure\Laravel\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use Admin\Infrastructure\UserProvider\AdminProvider;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Auth::provider('admin-provider', function ($app, array $config) {
+            return new AdminProvider($this->app['hash'], $config['model']);
+        });
     }
 }

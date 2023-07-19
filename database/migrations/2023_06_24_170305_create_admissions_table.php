@@ -10,8 +10,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admissions', static function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Pathway::class, 'pathway_id')->nullable()->constrained()->nullOnDelete();
+            $table->ulid('id', 16)->charset('binary')->primary();
+
+            $table->foreignIdFor(Pathway::class, 'pathway_id')
+                ->charset('binary')
+                ->nullable();
+
             $table->string('name');
             $table->string('description');
             $table->timestamps();
