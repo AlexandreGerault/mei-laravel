@@ -10,7 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admissions', static function (Blueprint $table) {
-            $table->ulid('id', 16)->charset('binary')->primary();
+            $table->ulid('id')->primary();
 
             $table->foreignIdFor(Pathway::class, 'pathway_id')
                 ->charset('binary')

@@ -3,12 +3,11 @@
 namespace Shared\Infrastructure\Laravel\Eloquent\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Shared\Infrastructure\Laravel\Eloquent\Casts\UlidCast;
-use Shared\Infrastructure\Laravel\Eloquent\Traits\HasUlids;
 
 class User extends Authenticatable
 {
@@ -43,6 +42,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'id' => UlidCast::class,
     ];
 }

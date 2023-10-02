@@ -2,12 +2,11 @@
 
 namespace Shared\Infrastructure\Laravel\Eloquent\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Shared\Infrastructure\Laravel\Eloquent\Casts\UlidCast;
-use Shared\Infrastructure\Laravel\Eloquent\Traits\HasUlids;
 
 class Specialism extends Model
 {
@@ -18,9 +17,7 @@ class Specialism extends Model
         'description',
     ];
 
-    protected $casts = [
-        'id' => UlidCast::class,
-    ];
+    protected $casts = [];
 
     /**
      * @return BelongsTo<Discipline, Specialism>

@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pathways', static function (Blueprint $table) {
-            $table->ulid('id', 16)->charset('binary')->primary();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->string('description');
             $table->integer('post_bac_level')->default(2);

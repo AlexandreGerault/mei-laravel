@@ -2,11 +2,10 @@
 
 namespace Shared\Infrastructure\Laravel\Eloquent\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Shared\Infrastructure\Laravel\Eloquent\Casts\UlidCast;
-use Shared\Infrastructure\Laravel\Eloquent\Traits\HasUlids;
 
 class Admission extends Model
 {
@@ -17,9 +16,7 @@ class Admission extends Model
         'description',
     ];
 
-    protected $casts = [
-        'id' => UlidCast::class,
-    ];
+    protected $casts = [];
 
     /**
      * @return BelongsTo<Pathway, Admission>
