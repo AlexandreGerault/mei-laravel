@@ -8,13 +8,14 @@ use Admin\Resources\SchoolResource\Pages\EditSchool;
 use Admin\Resources\SchoolResource\RelationManagers\CourseRelationManager;
 use Admin\Resources\SchoolResource\RelationManagers\SpecialismRelationManager;
 use Illuminate\Http\Testing\File;
-use function Pest\Laravel\actingAs;
-use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\CourseFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\SchoolFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\SpecialismFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\School;
 use Webmozart\Assert\Assert;
+
+use function Pest\Laravel\actingAs;
+use function Pest\Livewire\livewire;
 
 test('an admin can edit a school', function () {
     $admin = AdminFactory::new()->create();

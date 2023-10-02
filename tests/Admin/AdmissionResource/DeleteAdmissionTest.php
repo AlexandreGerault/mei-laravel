@@ -9,12 +9,13 @@ use Admin\Resources\AdmissionResource\Pages\ListAdmissions;
 use Filament\Pages\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Illuminate\Support\Collection;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\AdmissionFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Admission;
 use Webmozart\Assert\Assert;
+
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseCount;
+use function Pest\Livewire\livewire;
 
 test('an admin can bulk delete admissions', function () {
     $admin = AdminFactory::new()->create();

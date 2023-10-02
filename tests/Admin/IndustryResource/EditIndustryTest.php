@@ -5,11 +5,12 @@ namespace Tests\Admin\PathwayResource;
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\IndustryResource\Pages\EditIndustry;
-use function Pest\Laravel\actingAs;
-use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\IndustryFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Industry;
 use Webmozart\Assert\Assert;
+
+use function Pest\Laravel\actingAs;
+use function Pest\Livewire\livewire;
 
 test('an admin can edit an industry', function () {
     $admin = AdminFactory::new()->create();

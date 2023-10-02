@@ -3,11 +3,12 @@
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\CourseResource\Pages\EditCourse;
-use function Pest\Laravel\actingAs;
-use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\CourseFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Course;
 use Webmozart\Assert\Assert;
+
+use function Pest\Laravel\actingAs;
+use function Pest\Livewire\livewire;
 
 test('an admin can edit a course', function () {
     $admin = AdminFactory::new()->create();

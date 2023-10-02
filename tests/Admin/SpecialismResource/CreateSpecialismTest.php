@@ -6,9 +6,6 @@ use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\SpecialismResource;
 use Admin\Resources\SpecialismResource\Pages\CreateSpecialism;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\get;
-use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\CourseFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\DisciplineFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\IndustryFactory;
@@ -17,6 +14,10 @@ use Shared\Infrastructure\Laravel\Eloquent\Models\Discipline;
 use Shared\Infrastructure\Laravel\Eloquent\Models\School;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Specialism;
 use Webmozart\Assert\Assert;
+
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\get;
+use function Pest\Livewire\livewire;
 
 test('an admin can create a specialism', function () {
     $admin = AdminFactory::new()->create();

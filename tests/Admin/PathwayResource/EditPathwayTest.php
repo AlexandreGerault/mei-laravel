@@ -5,11 +5,12 @@ namespace Tests\Admin\PathwayResource;
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\PathwayResource\Pages\EditPathway;
-use function Pest\Laravel\actingAs;
-use function Pest\Livewire\livewire;
 use Shared\Infrastructure\Laravel\Eloquent\Factories\PathwayFactory;
 use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
 use Webmozart\Assert\Assert;
+
+use function Pest\Laravel\actingAs;
+use function Pest\Livewire\livewire;
 
 test('an admin can edit a pathway', function () {
     $admin = AdminFactory::new()->create();

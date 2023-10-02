@@ -3,9 +3,10 @@
 use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\AdminResource;
+use Webmozart\Assert\Assert;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
-use Webmozart\Assert\Assert;
 
 test('an admin can create another admin', function () {
     $admin = AdminFactory::new()->create();

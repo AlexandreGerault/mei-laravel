@@ -6,10 +6,11 @@ use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\IndustryResource;
 use Admin\Resources\IndustryResource\Pages\ListIndustries;
+use Webmozart\Assert\Assert;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
-use Webmozart\Assert\Assert;
 
 test('an admin can list industries', function () {
     $admin = AdminFactory::new()->create();

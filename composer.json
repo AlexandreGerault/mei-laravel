@@ -9,6 +9,7 @@
         "ext-pdo": "*",
         "blade-ui-kit/blade-icons": "^1.5",
         "codeat3/blade-forkawesome": "^1.9",
+        "ecotone/laravel": "^1.105",
         "filament/filament": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",

@@ -7,11 +7,12 @@ use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\SchoolResource;
 use Admin\Resources\SchoolResource\Pages\CreateSchool;
 use Illuminate\Http\Testing\File;
+use Shared\Infrastructure\Laravel\Eloquent\Models\School;
+use Webmozart\Assert\Assert;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
-use Shared\Infrastructure\Laravel\Eloquent\Models\School;
-use Webmozart\Assert\Assert;
 
 test('an admin can create a school', function () {
     $admin = AdminFactory::new()->create();

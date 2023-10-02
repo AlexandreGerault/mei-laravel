@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Storage;
 
-class Admin extends User implements FilamentUser, HasName, HasAvatar
+class Admin extends User implements FilamentUser, HasAvatar, HasName
 {
     use HasFactory, HasUlids;
 

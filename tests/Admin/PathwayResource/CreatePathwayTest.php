@@ -6,11 +6,12 @@ use Admin\Infrastructure\Factories\AdminFactory;
 use Admin\Infrastructure\Models\Admin;
 use Admin\Resources\PathwayResource;
 use Admin\Resources\PathwayResource\Pages\CreatePathway;
+use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
+use Webmozart\Assert\Assert;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
-use Shared\Infrastructure\Laravel\Eloquent\Models\Pathway;
-use Webmozart\Assert\Assert;
 
 test('an admin can create a pathway', function () {
     $admin = AdminFactory::new()->create();
